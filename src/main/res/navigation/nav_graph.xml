@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/HelloMenu">
+
+    <fragment
+        android:id="@+id/HelloMenu"
+        android:name="lv.rtu.tic_tac_toe.HelloMenu"
+        android:label="@string/Hello_menu_label"
+        tools:layout="@layout/hello_menu">
+
+        <action
+            android:id="@+id/action_HelloMenu_To_MainMenu"
+            app:destination="@id/MainMenu">
+            <argument android:name="PlayerName" app:argType="string"/>
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/MainMenu"
+        android:name="lv.rtu.tic_tac_toe.MainMenu"
+        android:label="@string/Main_menu_label"
+        tools:layout="@layout/main_menu">
+        <argument android:name="PlayerName" app:argType="string"/>
+        <action
+            android:id="@+id/action_MainMenu_To_GameFragment"
+            app:destination="@id/GameFragment">
+            <argument android:name="PlayerName" app:argType="string"/>
+            <argument android:name="GameMode" app:argType="string"/>
+        </action>
+</fragment>
+    <fragment
+        android:id="@+id/GameFragment"
+        android:name="lv.rtu.tic_tac_toe.GameFragment"
+        android:label="@string/Game_fragment_label"
+        tools:layout="@layout/game_fragment">
+        <argument android:name="PlayerName" app:argType="string"/>
+        <argument android:name="GameMode" app:argType="string"/>
+
+        <action
+            android:id="@+id/action_GameFragment_to_GameEndFragment"
+            app:destination="@id/GameEndFragment" >
+            <argument android:name="PlayerName" app:argType="string"/>
+            <argument android:name="GameMode" app:argType="string"/>
+            <argument android:name="GameState" app:argType="string"/>
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/GameEndFragment"
+        android:name="lv.rtu.tic_tac_toe.GameEndFragment"
+        android:label="@string/Game_end_label"
+        tools:layout="@layout/game_end_fragment">
+        <argument android:name="PlayerName" app:argType="string"/>
+        <argument android:name="GameMode" app:argType="string"/>
+        <argument android:name="GameState" app:argType="string"/>
+
+        <action
+            android:id="@+id/action_GameEndFragment_To_MainMenu"
+            app:destination="@id/MainMenu" >
+            <argument android:name="PlayerName" app:argType="string"/>
+        </action>
+        <action
+            android:id="@+id/action_GameEndFragment_to_GameFragment"
+            app:destination="@id/GameFragment" >
+            <argument android:name="PlayerName" app:argType="string"/>
+            <argument android:name="GameMode" app:argType="string"/>
+        </action>
+    </fragment>
+</navigation>
